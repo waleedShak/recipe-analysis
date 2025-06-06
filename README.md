@@ -36,7 +36,15 @@ In the advent of our fast-paced modern society and heavily processed food, the a
 ---
 
 ## Data Cleaning and Exploratory Data Analysis
+ghgh
 
+|     id |   average rating |   year published | is_healthy   | is_dessert   |   calories(#) |   sugar(PDV) |   saturated fat(PDV) |   protein(PDV) |   carbs(PDV) |
+|-------:|-----------------:|-----------------:|:-------------|:-------------|--------------:|-------------:|---------------------:|---------------:|-------------:|
+| 333281 |                4 |             2008 | False        | True         |         138.4 |           50 |                   19 |              3 |            6 |
+| 453467 |                5 |             2011 | False        | False        |         595.1 |          211 |                   51 |             13 |           26 |
+| 306168 |                5 |             2008 | False        | False        |         194.8 |            6 |                   36 |             22 |            3 |
+| 286009 |                5 |             2008 | False        | True         |         878.3 |          326 |                  123 |             20 |           39 |
+| 475785 |                5 |             2012 | False        | False        |         267   |           12 |                   48 |             29 |            2 |
 ---
 
 ## Assessment of Missingness
