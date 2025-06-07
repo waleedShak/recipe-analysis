@@ -76,6 +76,7 @@ After data preperation, the clean dataset `study` has 234429 rows and 26 columns
 #### Outliers
 When trying to run univariate analysis, I ran into various outliers that would greatly distort visualizations and hinder understanding. To tackle this I used the IQR method to identify and remove outlier data.
 
+#### Figures
 This figure shows the distribution of sugar(PDV) in the dataset. The distribution is skewed to the right indicating that fewer recipes have a high amount of sugar. Futhermore, there exists a mode at the value: 0 showing that many recipes in the dataset don't use sugar all together. 
 <iframe
   src="assets/uni_sugar.html"
@@ -103,6 +104,10 @@ This figure analyzes the proportion of healthy recipes over time. As can be seen
 ></iframe>
 
 ### Interesting Aggregates
+| is_healthy   |   ('calories(#)', 'mean') |   ('calories(#)', 'median') |   ('calories(#)', 'std') |   ('calories(#)', 'max') |   ('sugar(PDV)', 'mean') |   ('sugar(PDV)', 'median') |   ('sugar(PDV)', 'std') |   ('sugar(PDV)', 'max') |   ('saturated fat(PDV)', 'mean') |   ('saturated fat(PDV)', 'median') |   ('saturated fat(PDV)', 'std') |   ('saturated fat(PDV)', 'max') |   ('protein(PDV)', 'mean') |   ('protein(PDV)', 'median') |   ('protein(PDV)', 'std') |   ('protein(PDV)', 'max') |   ('carbs(PDV)', 'mean') |   ('carbs(PDV)', 'median') |   ('carbs(PDV)', 'std') |   ('carbs(PDV)', 'max') |
+|:-------------|--------------------------:|----------------------------:|-------------------------:|-------------------------:|-------------------------:|---------------------------:|------------------------:|------------------------:|---------------------------------:|-----------------------------------:|--------------------------------:|--------------------------------:|---------------------------:|-----------------------------:|--------------------------:|--------------------------:|-------------------------:|---------------------------:|------------------------:|------------------------:|
+| False        |                   280.854 |                       255.8 |                  171.422 |                    989   |                  28.0718 |                         17 |                 29.1721 |                     126 |                         26.4913  |                                 20 |                        23.1342  |                              93 |                    25.6783 |                           16 |                   24.952  |                       101 |                  7.38257 |                          6 |                 5.85004 |                      25 |
+| True         |                   221.754 |                       198.4 |                  134.652 |                    940.6 |                  33.6268 |                         23 |                 30.8937 |                     126 |                          8.75748 |                                  6 |                         9.90589 |                              80 |                    19.7474 |                           11 |                   21.4049 |                       101 |                  9.54034 |                          9 |                 6.11057 |                      25 |
 ---
 
 ## Assessment of Missingness
