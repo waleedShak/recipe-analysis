@@ -153,7 +153,7 @@ As for the missingness in the `'description'` column, the following portion test
   frameborder="0"
 ></iframe>
 
-Calculated the observed K-S statistic then ran a permutation test to generate the figure below:
+Calculated the observed K-S statistic then ran a permutation test with a 1000 sims to generate the figure below:
 <iframe
   src="assets/sugar_hypo.html"
   width="800"
@@ -192,6 +192,25 @@ The p value ≈ 0.11 which is > 0.05 so we fail to reject the null hypothesis th
 ---
 
 ## Hypothesis Testing
+To answer the question posed at the begining of this project (**Is recipe health consciousness changing over time?**), I categorized the dataset into two halves: the old half (2008-2013) and the new half (2014-2018) and ran the a permutation test using the Mean Absolute difference between the proportion of healthy recipes in the early and latter halves of the dataset.
+
+**Null Hypothesis:** The proportion of healthy recipes in the early years of the dataset (2008-2013) is the same as in later years of the dataset (2014-2018)
+
+**Alternate Hypothesis:** The proportion of healthy recipes in the early years of the dataset (2008-2013) is different to later years of the dataset (2014-2018)
+
+**Test Statistic:** The Mean Absolute difference between the proportion of healthy recipes in the early and latter halves of the dataset.
+
+**Significance Level:** 5%
+
+Calculated the observed statistic and ran 1000 simulations generating the figure below:
+<iframe
+  src="assets/hyp.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The p value ≈ 0 which is < 0.05 so we reject the null hypothesis. There is statistically significant evidence that the proportion of healthy recipes in the early years of the dataset (2008-2013) is different to later years of the dataset (2014-2018)
 
 ---
 
