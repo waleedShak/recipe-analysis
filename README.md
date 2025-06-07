@@ -104,19 +104,90 @@ This figure analyzes the proportion of healthy recipes over time. As can be seen
 ></iframe>
 
 ### Interesting Aggregates
-| is_healthy   |   ('calories(#)', 'mean') |   ('calories(#)', 'median') |   ('calories(#)', 'std') |   ('calories(#)', 'max') |   ('sugar(PDV)', 'mean') |   ('sugar(PDV)', 'median') |   ('sugar(PDV)', 'std') |   ('sugar(PDV)', 'max') |   ('saturated fat(PDV)', 'mean') |   ('saturated fat(PDV)', 'median') |   ('saturated fat(PDV)', 'std') |   ('saturated fat(PDV)', 'max') |   ('protein(PDV)', 'mean') |   ('protein(PDV)', 'median') |   ('protein(PDV)', 'std') |   ('protein(PDV)', 'max') |   ('carbs(PDV)', 'mean') |   ('carbs(PDV)', 'median') |   ('carbs(PDV)', 'std') |   ('carbs(PDV)', 'max') |
-|:-------------|--------------------------:|----------------------------:|-------------------------:|-------------------------:|-------------------------:|---------------------------:|------------------------:|------------------------:|---------------------------------:|-----------------------------------:|--------------------------------:|--------------------------------:|---------------------------:|-----------------------------:|--------------------------:|--------------------------:|-------------------------:|---------------------------:|------------------------:|------------------------:|
-| False        |                   280.854 |                       255.8 |                  171.422 |                    989   |                  28.0718 |                         17 |                 29.1721 |                     126 |                         26.4913  |                                 20 |                        23.1342  |                              93 |                    25.6783 |                           16 |                   24.952  |                       101 |                  7.38257 |                          6 |                 5.85004 |                      25 |
-| True         |                   221.754 |                       198.4 |                  134.652 |                    940.6 |                  33.6268 |                         23 |                 30.8937 |                     126 |                          8.75748 |                                  6 |                         9.90589 |                              80 |                    19.7474 |                           11 |                   21.4049 |                       101 |                  9.54034 |                          9 |                 6.11057 |                      25 |
+Nutrition Value Aggregates when a recipe is tagged as healthy:
+
+| healthy            |      mean |   median |       std |   max |
+|:-------------------|----------:|---------:|----------:|------:|
+| calories(#)        | 221.754   |    198.4 | 134.652   | 940.6 |
+| sugar(PDV)         |  33.6268  |     23   |  30.8937  | 126   |
+| saturated fat(PDV) |   8.75748 |      6   |   9.90589 |  80   |
+| protein(PDV)       |  19.7474  |     11   |  21.4049  | 101   |
+| carbs(PDV)         |   9.54034 |      9   |   6.11057 |  25   |
+
+Nutrition Value Aggregates when a recipe is not tagged as healthy:
+
+| Not healthy        |      mean |   median |       std |   max |
+|:-------------------|----------:|---------:|----------:|------:|
+| calories(#)        | 280.854   |    255.8 | 171.422   |   989 |
+| sugar(PDV)         |  28.0718  |     17   |  29.1721  |   126 |
+| saturated fat(PDV) |  26.4913  |     20   |  23.1342  |    93 |
+| protein(PDV)       |  25.6783  |     16   |  24.952   |   101 |
+| carbs(PDV)         |   7.38257 |      6   |   5.85004 |    25 |
+
+The two differences that stand out to me are the differences in `'calories'` and `'saturated fat(PDV)'`. Recipes that were labeled healthy tended to have less calories and much lower levels of saturated fat
+
 ---
 
 ## Assessment of Missingness
-Of the columns present in the original merged dataset, 3 columns: 'description', 'rating', and 'review' have significant missing values. This section aims to analyse that missingness.
+Of the columns present in the original merged dataset, 3 columns: `'description'`, `'rating'`, and `'review'` have significant missing values. This section aims to analyse that missingness.
 
 ### NMAR Analysis
 The missingness of the `'review'` column is most likely NMAR. Unless an average person thinks that a recipe is really good, really poor or in some other way intriging, they won't bother leaving a review. This is because writing a review for a recipe takes some time and effort that a mundane recipe isn't percieved to be worth.
 
 ### Missingness Dependency
+As for the missingness in the `'description'` column, the following portion tests it's dependance on `'sugar(PDV)'` then on `'calories(#)'`.
+
+#### Description and Sugar
+**Null Hypothesis:** The missingness of `'description'` is independent of `'sugar(PDV)'`
+
+**Alternate Hypothesis:** The missingness of `'description'` is dependent on `'sugar(PDV)'`
+
+**Test Statistic:** The Kolmogorov-Smirnov statistic between the two distributions of `'sugar(PDV)'` (description missing vs not missing)
+
+**Significance Level:** 5%
+
+<iframe
+  src="assets/sugar_miss.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Calculated the observed K-S statistic then ran a permutation test to generate the figure below:
+<iframe
+  src="assets/sugar_hypo.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The p value ≈ 0 which is < 0.05 so we reject the null hypothesis that the missingness of `'description'` is independent of `'sugar(PDV)'` and say that there is statistically significant evidence supporting the alternative hypothesis.
+
+#### Description and Calories
+**Null Hypothesis:** The missingness of `'description'` is independent of `'calories(#)'`
+
+**Alternate Hypothesis:** The missingness of `'description'` is dependent on `'calories(#)'`
+
+**Test Statistic:** The Kolmogorov-Smirnov statistic between the two distributions of `'calories(#)'` (description missing vs not missing)
+
+**Significance Level:** 5%
+
+<iframe
+  src="assets/cal_hist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Calculated the observed K-S statistic then ran a permutation test to generate the figure below:
+<iframe
+  src="assets/cal_hyp.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The p value ≈ 0.11 which is > 0.05 so we fail to reject the null hypothesis that the missingness of `'description'` is independent of `'calories(#)'`
 
 ---
 
